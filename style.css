@@ -1,0 +1,30 @@
+html,
+body {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.answer-button {
+    width: 350px;
+    height: 350px;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #f51a0a;
+    border-radius: 50%;
+    box-shadow: 0 9px #999;
+    border: 0;
+    outline: 0;
+}
+
+.answer-button:hover {
+    background-color: #b31307
+}
+
+.answer-button:active {
+    background-color: #b31307;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
