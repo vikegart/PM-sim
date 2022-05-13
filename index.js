@@ -15,21 +15,21 @@ const soundsMap = {
 
 
 
-document.body.onclick = (e) => { 
+document.body.onclick = (e) => {
     console.log(e);
     console.log(e.target.id);
     audio = soundsMap[e.target.id];
-    for (btn of startBtns){
+    for (btn of startBtns) {
         btn.style.display = "none";
     }
-    if (DeviceOrientationEvent && typeof(DeviceOrientationEvent.requestPermission) === "function") {
-        const permissionState = await DeviceOrientationEvent.requestPermission();
-    
-        if (permissionState === "granted") {
-            window.addEventListener("devicemotion", onMotion);    
-        } else {
-            // Permission denied
-        }
+    if (DeviceOrientationEvent && typeof (DeviceOrientationEvent.requestPermission) === "function") {
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response == 'granted') {
+                    window.addEventListener("devicemotion", onMotion);
+                }
+            })
+            .catch(console.error);
     } else {
         window.addEventListener("devicemotion", onMotion);
     }
