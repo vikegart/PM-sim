@@ -3,28 +3,47 @@ let lastAx = 0;
 
 // Acceleration threshold
 const ACC_TH = 6;
+let isPlaying = false;
+let audio;
+const startBtns = document.getElementsByClassName('answer-button');
 
 const soundsMap = {
-    WHIP: new Audio('http://www.fun-lover.com/music/wavs/whip2.wav'),
-    SHAME: new Audio('./shame.mp3'),
+    whip: new Audio('http://www.fun-lover.com/music/wavs/whip2.wav'),
+    shame: new Audio('./shame.mp3'),
 }
-let isPlaying = false;
-const audio = new Audio('http://www.fun-lover.com/music/wavs/whip2.wav');
-const startBtn = document.getElementById('start');
-
-window.addEventListener("devicemotion", onMotion);
-
-startBtn.onclick = () => { startBtn.style.display = "none" };
 
 
-const playWhipSound = () => {
+
+
+document.body.onclick = (e) => { 
+    console.log(e);
+    console.log(e.target.id);
+    audio = soundsMap[e.target.id];
+    for (btn of startBtns){
+        btn.style.display = "none";
+    }
+    if (DeviceOrientationEvent && typeof(DeviceOrientationEvent.requestPermission) === "function") {
+        const permissionState = await DeviceOrientationEvent.requestPermission();
+    
+        if (permissionState === "granted") {
+            window.addEventListener("devicemotion", onMotion);    
+        } else {
+            // Permission denied
+        }
+    } else {
+        window.addEventListener("devicemotion", onMotion);
+    }
+};
+
+
+const playSound = () => {
     isPlaying = true;
     document.body.style.backgroundColor = "red";
     audio.play();
     setTimeout(() => {
         document.body.style.backgroundColor = "white";
         isPlaying = false;
-    }, 2000);
+    }, 1000);
 }
 
 function onMotion(ev) {
@@ -33,6 +52,6 @@ function onMotion(ev) {
     if (
         (Math.abs(ax) > ACC_TH) && !isPlaying
     ) {
-        playWhipSound();
+        playSound();
     }
 }
