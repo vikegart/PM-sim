@@ -3,11 +3,13 @@ body {
     height: 100%;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
 }
 .answer-button {
     width: 350px;
     height: 350px;
     font-size: 30px;
+    margin-top: 10px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;

@@ -3,6 +3,11 @@ let lastAx = 0;
 
 // Acceleration threshold
 const ACC_TH = 6;
+
+const soundsMap = {
+    WHIP: new Audio('http://www.fun-lover.com/music/wavs/whip2.wav'),
+    SHAME: new Audio('./shame.mp3'),
+}
 let isPlaying = false;
 const audio = new Audio('http://www.fun-lover.com/music/wavs/whip2.wav');
 const startBtn = document.getElementById('start');
