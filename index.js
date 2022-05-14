@@ -4,21 +4,19 @@ let lastAx = 0;
 // Acceleration threshold
 const ACC_TH = 6;
 let isPlaying = false;
-let audio;
+let audio = null;
 const startBtns = document.getElementsByClassName('answer-button');
 
-const soundsMap = {
-    whip: new Audio('http://www.fun-lover.com/music/wavs/whip2.wav'),
-    shame: new Audio('./shame.mp3'),
+let soundsMap = {
+    whip: 'http://www.fun-lover.com/music/wavs/whip2.wav',
+    shame: './shame.mp3',
 }
 
 
 
 
 document.body.onclick = (e) => {
-    console.log(e);
-    console.log(e.target.id);
-    audio = soundsMap[e.target.id];
+    audio = new Audio(soundsMap[e.target.id]);
     for (btn of startBtns) {
         btn.style.display = "none";
     }
